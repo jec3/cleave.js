@@ -2031,6 +2031,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	            partInteger,
 	            partDecimal = '';
 
+	        // strip prefix
+	        if (typeof owner.prefix != 'undefined') {
+	            value = value.replace(owner.prefix, '');
+	        }
+
 	        // strip alphabet letters
 	        value = value.replace(/[A-Za-z]/g, '')
 	        // replace the first decimal mark with reserved placeholder

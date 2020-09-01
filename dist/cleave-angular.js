@@ -649,7 +649,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    thousand: 'thousand',
 	    lakh:     'lakh',
 	    wan:      'wan',
-	    none:     'none'    
+	    none:     'none'
 	};
 
 	NumeralFormatter.prototype = {
@@ -659,6 +659,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    format: function (value) {
 	        var owner = this, parts, partSign, partSignAndPrefix, partInteger, partDecimal = '';
+
+	        // strip prefix
+	        if (typeof owner.prefix != 'undefined') {
+	            value = value.replace(owner.prefix, '');
+	        }
 
 	        // strip alphabet letters
 	        value = value.replace(/[A-Za-z]/g, '')
@@ -696,7 +701,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        } else {
 	            partSignAndPrefix = partSign;
 	        }
-	        
+
 	        partInteger = value;
 
 	        if (value.indexOf(owner.numeralDecimalMark) >= 0) {
